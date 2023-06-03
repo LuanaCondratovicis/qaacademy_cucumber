@@ -4,6 +4,7 @@ import io.cucumber.java.es.Dado;
 import io.cucumber.java.it.Quando;
 import io.cucumber.java.pt.Entao;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,6 +29,9 @@ public class PesquisaStep {
     }
     @Entao("retorna um link relacionado a pesquisa")
     public void retorna_um_link_relacionado_a_pesquisa() {
-        driver.findElement(By.xpath(pesquisaPages.linkPesquisa)).isDisplayed;
+        JavascriptExecutor js = (JavascriptExecutor) driver;//para descer a pagina
+        js.executeScript("window.scrollBy(0,300)", "");//cont. para descer a pagina
+        driver.findElement(By.xpath(pesquisaPages.clicarLink)).isDisplayed();
+        driver.findElement(By.xpath(pesquisaPages.clicarLink)).click();
     }
 }
